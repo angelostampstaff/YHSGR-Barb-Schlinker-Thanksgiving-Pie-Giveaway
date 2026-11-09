@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Free Thanksgiving Pie Giveaway | Barb Has the Buyer Team</title>
+  <meta name="description" content="Your Thanksgiving pie is on us! Choose Raspberry Cream, Chocolate Cream, Pumpkin, Banana Cream or Apple Cobbler and reserve your free pie from Barb Has the Buyer Team." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#FDFBF7" />
+  <link rel="canonical" href="https://YOUR-DOMAIN-HERE/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Your Thanksgiving Pie Is On Us!" />
+  <meta property="og:description" content="A thank-you from Barb Has the Buyer Team: choose your favorite Thanksgiving pie and reserve yours." />
+  <meta property="og:site_name" content="Your Home Sold Guaranteed Realty – Barb Has the Buyer Team" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Your Thanksgiving Pie Is On Us!" />
+  <meta name="twitter:description" content="Choose your favorite Thanksgiving pie and reserve yours free." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FDFBF7',
+            ink: '#2C1D11',
+            cta: '#C85A32',
+            gold: '#D99B26'
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            body: ['"Open Sans"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root { --cream:#FDFBF7; --ink:#2C1D11; --cta:#C85A32; --gold:#D99B26; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--ink); font-family: 'Open Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, .font-display { font-family: 'Playfair Display', Georgia, serif; }
+
+    .hero-bg {
+      background:
+        radial-gradient(900px 400px at 85% -10%, rgba(217,155,38,.18), transparent 60%),
+        radial-gradient(700px 400px at -10% 30%, rgba(200,90,50,.12), transparent 60%),
+        var(--cream);
+    }
+    .gold-rule { height: 2px; width: 72px; background: var(--gold); border-radius: 2px; }
+
+    .btn-cta {
+      background: var(--cta); color: #fff; font-weight: 700; letter-spacing: .02em;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      box-shadow: 0 10px 24px -10px rgba(200,90,50,.7);
+    }
+    .btn-cta:hover:not(:disabled) { background: #b24c27; transform: translateY(-2px); }
+    .btn-cta:focus-visible, .field:focus-visible, .pie-radio:focus-visible + .pie-card,
+    .link-focus:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .btn-cta:disabled { background: #b9a89c; box-shadow: none; cursor: not-allowed; }
+
+    /* Pie cards */
+    .pie-card {
+      background: #fff; border: 1px solid rgba(44,29,17,.1); border-radius: 20px; overflow: hidden;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+      box-shadow: 0 12px 30px -20px rgba(44,29,17,.45);
+      cursor: pointer; height: 100%;
+    }
+    .pie-card:hover { transform: translateY(-6px); box-shadow: 0 24px 40px -22px rgba(44,29,17,.5); }
+    .pie-radio:checked + .pie-card { border-color: var(--cta); box-shadow: 0 0 0 3px rgba(200,90,50,.25), 0 24px 40px -22px rgba(44,29,17,.5); }
+    .pie-radio:checked + .pie-card .pie-check { background: var(--cta); color: #fff; border-color: var(--cta); }
+    .pie-radio:checked + .pie-card .pie-check svg { opacity: 1; transform: scale(1); }
+    .pie-check { transition: all .2s ease; border: 2px solid rgba(44,29,17,.25); }
+    .pie-check svg { opacity: 0; transform: scale(.6); transition: all .2s ease; }
+    .pie-media { aspect-ratio: 4/3; background: linear-gradient(135deg, #F6EBD6, #EFD9B3); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .pie-media img { width:100%; height:100%; object-fit:cover; transition: transform .6s ease; }
+    .pie-card:hover .pie-media img, .pie-card:hover .pie-media svg { transform: scale(1.05); }
+    .pie-media svg { width: 62%; height: auto; transition: transform .6s ease; filter: drop-shadow(0 10px 12px rgba(44,29,17,.25)); }
+
+    /* Form */
+    .field {
+      width: 100%; background: #fff; border: 1.5px solid rgba(44,29,17,.2); border-radius: 12px;
+      padding: .8rem 1rem; font-size: 1rem; transition: border-color .2s, box-shadow .2s;
+    }
+    .field:focus { outline: none; border-color: var(--cta); box-shadow: 0 0 0 3px rgba(200,90,50,.18); }
+    .field[aria-invalid="true"] { border-color: #B3261E; background: #FFF8F7; }
+    .field-error { color: #B3261E; font-size: .85rem; margin-top: .3rem; min-height: 1.1rem; }
+
+    /* Animations */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @keyframes floaty { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
+    .floaty { animation: floaty 7s ease-in-out infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner { width: 18px; height: 18px; border: 3px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: spin .8s linear infinite; }
+    @keyframes pop { from { opacity: 0; transform: scale(.94) translateY(10px); } to { opacity: 1; transform: none; } }
+    .modal-card { animation: pop .35s ease both; }
+
+    .hidden-frame { position:absolute; width:0; height:0; border:0; visibility:hidden; }
+
+    html, body { overflow-x: hidden; }
+    img, svg { max-width: 100%; }
+
+    /* Mobile refinements */
+    @media (max-width: 639px) {
+      body { padding-bottom: 84px; } /* room for the sticky CTA */
+      .pie-card:hover { transform: none; }
+      .pie-media { aspect-ratio: auto; width: 38%; min-height: 150px; flex-shrink: 0; }
+      .pie-media svg { width: 84%; }
+      .btn-cta, .field, select.field { min-height: 52px; }
+      .gold-rule { width: 56px; }
+    }
+    #sticky-cta { transform: translateY(110%); transition: transform .3s ease; }
+    #sticky-cta.show { transform: translateY(0); }
+    #success-modal { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+
+    @media (prefers-reduced-motion: reduce) {
+      #sticky-cta { transition: none; }
+      html { scroll-behavior: auto; }
+      .reveal { opacity:1; transform:none; transition:none; }
+      .floaty, .modal-card, .spinner { animation: none; }
+      .pie-card, .pie-media img, .pie-media svg, .btn-cta { transition: none; }
+    }
+  </style>
+</head>
+
+<body class="font-body">
+  <a href="#reserve" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded link-focus">Skip to reservation form</a>
+
+  <!-- Header -->
+  <header class="border-b border-ink/10 bg-cream/90 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between gap-4">
+      <div class="leading-tight">
+        <p class="font-display font-semibold text-base sm:text-lg">Barb Has the Buyer Team</p>
+        <p class="text-[11px] sm:text-xs tracking-widest uppercase text-ink/60">Your Home Sold Guaranteed Realty</p>
+      </div>
+      <a href="#reserve" class="link-focus hidden sm:inline-block text-sm font-semibold text-cta hover:underline">Reserve My Free Pie</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero-bg" aria-labelledby="hero-title">
+      <div class="max-w-6xl mx-auto px-5 py-10 sm:py-20 grid md:grid-cols-2 gap-8 md:gap-10 items-center">
+        <div class="reveal">
+          <p class="text-sm font-semibold tracking-[.25em] uppercase text-gold mb-4">A Thanksgiving thank-you</p>
+          <h1 id="hero-title" class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1]">Your Thanksgiving Pie Is On Us!</h1>
+          <div class="gold-rule my-6"></div>
+          <p class="text-lg leading-relaxed text-ink/85 max-w-xl">As a thank-you for being part of our community, we're giving you a Thanksgiving pie! Choose your favorite and reserve yours. It's our little way of showing how grateful we are for you.</p>
+          <div class="mt-8 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-4">
+            <a href="#reserve" id="hero-cta" class="btn-cta link-focus inline-flex items-center justify-center rounded-full px-8 py-4 text-base w-full sm:w-auto">Reserve My Free Pie</a>
+            <span class="text-sm text-ink/60 text-center sm:text-left">Five bakery favorites. One free pie for you.</span>
+          </div>
+        </div>
+        <div class="reveal flex justify-center" aria-hidden="true">
+          <div class="relative w-48 sm:w-72 md:w-96">
+            <div class="absolute inset-0 rounded-full bg-gold/20 blur-3xl"></div>
+            <div id="hero-art" class="floaty relative"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Setup notice -->
+    <div id="campaign-notice" class="hidden" role="status">
+      <div class="max-w-4xl mx-auto px-5 mt-2">
+        <div class="rounded-2xl border border-gold/50 bg-gold/10 px-5 py-4 flex items-start gap-3">
+          <svg class="w-6 h-6 text-gold shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg>
+          <div>
+            <p class="font-display font-semibold text-lg">Reservations Opening Soon</p>
+            <p class="text-sm text-ink/80">We're putting the finishing touches on our pie giveaway. Take a look around and pick your favorite. Reservations aren't open just yet, so please check back soon!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pie selection -->
+    <section id="pies" class="max-w-6xl mx-auto px-5 py-16 sm:py-20" aria-labelledby="pies-title">
+      <div class="text-center max-w-2xl mx-auto reveal">
+        <p class="text-sm font-semibold tracking-[.25em] uppercase text-gold mb-3">The Menu</p>
+        <h2 id="pies-title" class="text-3xl sm:text-4xl font-bold">Choose Your Favorite Pie</h2>
+        <div class="gold-rule mx-auto my-5"></div>
+        <p class="text-ink/75">Tap a pie to select it. Your choice carries over to the reservation form below.</p>
+      </div>
+
+      <fieldset class="mt-12 border-0 p-0 m-0">
+        <legend class="sr-only">Pie flavor</legend>
+        <div id="pie-grid" class="grid sm:grid-cols-2 lg:grid-cols-6 gap-6"></div>
+      </fieldset>
+    </section>
+
+    <!-- Reservation -->
+    <section id="reserve" class="bg-white border-y border-ink/10" aria-labelledby="reserve-title">
+      <div class="max-w-2xl mx-auto px-5 py-16 sm:py-20">
+        <div class="text-center reveal">
+          <p class="text-sm font-semibold tracking-[.25em] uppercase text-gold mb-3">Reserve</p>
+          <h2 id="reserve-title" class="text-3xl sm:text-4xl font-bold">Reserve My Free Pie</h2>
+          <div class="gold-rule mx-auto my-5"></div>
+          <p class="text-ink/75">Just a few details and your pie is yours.</p>
+        </div>
+
+        <div id="form-banner" class="hidden mt-8 rounded-xl px-4 py-3 text-sm" role="alert"></div>
+
+        <form id="reservation-form" class="mt-8 space-y-5" novalidate autocomplete="on">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="firstName" class="block text-sm font-semibold mb-1.5">First Name <span class="text-cta" aria-hidden="true">*</span></label>
+              <input id="firstName" name="firstName" type="text" class="field" autocomplete="given-name" required maxlength="60" aria-describedby="firstName-error" />
+              <p id="firstName-error" class="field-error" aria-live="polite"></p>
+            </div>
+            <div>
+              <label for="lastName" class="block text-sm font-semibold mb-1.5">Last Name <span class="text-cta" aria-hidden="true">*</span></label>
+              <input id="lastName" name="lastName" type="text" class="field" autocomplete="family-name" required maxlength="60" aria-describedby="lastName-error" />
+              <p id="lastName-error" class="field-error" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-semibold mb-1.5">Email Address <span class="text-cta" aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" inputmode="email" class="field" autocomplete="email" required maxlength="120" aria-describedby="email-error" />
+            <p id="email-error" class="field-error" aria-live="polite"></p>
+          </div>
+
+          <div>
+            <label for="phone" class="block text-sm font-semibold mb-1.5">Cell Phone <span class="text-cta" aria-hidden="true">*</span></label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" class="field" autocomplete="tel" placeholder="(719) 555-1234" required maxlength="20" aria-describedby="phone-error" />
+            <p id="phone-error" class="field-error" aria-live="polite"></p>
+          </div>
+
+          <div>
+            <label for="pieSelect" class="block text-sm font-semibold mb-1.5">Pie Flavor <span class="text-cta" aria-hidden="true">*</span></label>
+            <select id="pieSelect" name="pieSelection" class="field" required aria-describedby="pieSelect-error">
+              <option value="">Choose your pie…</option>
+            </select>
+            <p id="pieSelect-error" class="field-error" aria-live="polite"></p>
+          </div>
+
+          <div class="flex items-start gap-3 rounded-xl bg-cream border border-ink/10 p-4">
+            <input id="smsConsent" name="smsConsent" type="checkbox" class="mt-1 h-5 w-5 rounded border-ink/30 accent-[#C85A32]" />
+            <label for="smsConsent" class="text-sm text-ink/80 leading-relaxed">
+              <span class="font-semibold">Optional:</span> Yes, text me my reservation confirmation and pickup details. By checking this box, I agree to receive text messages from Barb Has the Buyer Team about my pie reservation. Message and data rates may apply. Consent is not a condition of reserving a pie.
+            </label>
+          </div>
+
+          <button id="submit-btn" type="submit" class="btn-cta w-full rounded-full px-8 py-4 text-base inline-flex items-center justify-center gap-3">
+            <span id="submit-spinner" class="spinner hidden" aria-hidden="true"></span>
+            <span id="submit-label">Reserve My Free Pie</span>
+          </button>
+          <p id="submit-hint" class="text-center text-xs text-ink/60"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- What happens next -->
+    <section class="max-w-6xl mx-auto px-5 py-16 sm:py-20" aria-labelledby="next-title">
+      <div class="text-center max-w-2xl mx-auto reveal">
+        <p class="text-sm font-semibold tracking-[.25em] uppercase text-gold mb-3">After You Reserve</p>
+        <h2 id="next-title" class="text-3xl sm:text-4xl font-bold">What Happens Next?</h2>
+        <div class="gold-rule mx-auto my-5"></div>
+      </div>
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        <article class="reveal rounded-2xl bg-white border border-ink/10 p-7 shadow-sm">
+          <div class="w-12 h-12 rounded-full bg-gold/15 text-gold flex items-center justify-center mb-4" aria-hidden="true">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Email Confirmation</h3>
+          <p class="text-ink/75 leading-relaxed">We'll send you an email confirming your Thanksgiving pie reservation.</p>
+        </article>
+        <article class="reveal rounded-2xl bg-white border border-ink/10 p-7 shadow-sm">
+          <div class="w-12 h-12 rounded-full bg-gold/15 text-gold flex items-center justify-center mb-4" aria-hidden="true">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Text Message Confirmation</h3>
+          <p class="text-ink/75 leading-relaxed">We'll send you a text with your reservation confirmation, where applicable SMS consent has been provided.</p>
+        </article>
+        <article class="reveal rounded-2xl bg-white border border-ink/10 p-7 shadow-sm">
+          <div class="w-12 h-12 rounded-full bg-gold/15 text-gold flex items-center justify-center mb-4" aria-hidden="true">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Pickup Details</h3>
+          <p class="text-ink/75 leading-relaxed">We'll follow up with another communication letting you know exactly when and where to pick up your Thanksgiving pie.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-ink/10 bg-ink text-cream">
+    <div class="max-w-6xl mx-auto px-5 py-10 text-center">
+      <p class="font-display text-xl">Barb Has the Buyer Team</p>
+      <p class="text-sm text-cream/70 mt-1">Your Home Sold Guaranteed Realty</p>
+      <p class="text-xs text-cream/50 mt-6">With gratitude, from our community to yours. Happy Thanksgiving!</p>
+    </div>
+  </footer>
+
+  <!-- Sticky mobile CTA -->
+  <div id="sticky-cta" class="sm:hidden fixed bottom-0 inset-x-0 z-30 px-4 pt-3 bg-cream/95 backdrop-blur border-t border-ink/10" style="padding-bottom: calc(.75rem + env(safe-area-inset-bottom));" aria-hidden="true">
+    <a href="#reserve" tabindex="-1" class="btn-cta flex items-center justify-center rounded-full px-6 py-3.5 text-base w-full">Reserve My Free Pie</a>
+  </div>
+
+  <!-- Hidden iframe: receives the Apps Script response -->
+  <iframe id="gas-frame" name="gas-frame" title="Reservation submission response" class="hidden-frame" tabindex="-1" aria-hidden="true"></iframe>
+
+  <!-- Success modal -->
+  <div id="success-modal" class="hidden fixed inset-0 z-50 items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
+    <div class="absolute inset-0 bg-ink/70" data-close="1"></div>
+    <div class="modal-card relative bg-cream rounded-3xl max-w-lg w-full p-8 sm:p-10 text-center shadow-2xl max-h-[92vh] overflow-y-auto">
+      <div class="mx-auto w-16 h-16 rounded-full bg-cta/10 text-cta flex items-center justify-center mb-5" aria-hidden="true">
+        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h2 id="modal-title" class="text-3xl font-bold">Your Thanksgiving Pie Is Reserved!</h2>
+      <div class="gold-rule mx-auto my-5"></div>
+      <dl class="text-left bg-white border border-ink/10 rounded-2xl divide-y divide-ink/10 text-sm">
+        <div class="flex justify-between gap-4 px-4 py-3"><dt class="text-ink/60">First name</dt><dd id="m-first" class="font-semibold text-right break-words"></dd></div>
+        <div class="flex justify-between gap-4 px-4 py-3"><dt class="text-ink/60">Selected pie</dt><dd id="m-pie" class="font-semibold text-right"></dd></div>
+        <div class="flex justify-between gap-4 px-4 py-3"><dt class="text-ink/60">Reservation ID</dt><dd id="m-id" class="font-semibold text-right break-all"></dd></div>
+      </dl>
+      <p id="modal-desc" class="mt-6 text-ink/80 leading-relaxed">Thank you for being part of our community! We're so grateful for you. Watch your email and phone for your confirmation and upcoming pickup details.</p>
+      <p class="mt-5 font-display text-lg text-cta">Barb Has the Buyer Team</p>
+      <button id="modal-close" type="button" class="btn-cta mt-7 rounded-full px-8 py-3 text-sm">Close</button>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* =====================================================================
+       CONFIGURATION – edit these values when you activate the campaign
+       ===================================================================== */
+    var CONFIG = {
+      // 1) PASTE YOUR DEPLOYED APPS SCRIPT WEB APP URL HERE (ends in /exec)
+      APPS_SCRIPT_URL: 'INSERT_MY_DEPLOYED_GOOGLE_APPS_SCRIPT_WEB_APP_URL',
+
+      // 2) Keep false while in setup mode. Set to true ONLY after the
+      //    backend CAMPAIGN_READY is also set to true.
+      CAMPAIGN_READY: false,
+
+      // How long to wait for the backend before showing an error (ms)
+      RESPONSE_TIMEOUT_MS: 45000
+    };
+
+    /* Optional: paste real pie photo URLs here (your own hosted images).
+       If a URL is empty or fails to load, an illustrated pie is shown. */
+    var PIES = [
+      { id: 'Raspberry Cream', desc: 'Silky vanilla cream layered with tart, jewel-red raspberries in a flaky golden crust.', img: '', kind: 'raspberry' },
+      { id: 'Chocolate Cream', desc: 'Rich, velvety chocolate custard crowned with clouds of whipped cream and shaved chocolate.', img: '', kind: 'chocolate' },
+      { id: 'Pumpkin', desc: 'The Thanksgiving classic: smooth spiced pumpkin, warm cinnamon and a buttery crust.', img: '', kind: 'pumpkin' },
+      { id: 'Banana Cream', desc: 'Fresh banana slices folded into sweet vanilla cream with a drizzle of chocolate.', img: '', kind: 'banana' },
+      { id: 'Apple Cobbler', desc: 'Cinnamon-baked apples under a golden, buttery cobbler topping. Pure comfort.', img: '', kind: 'apple' }
+    ];
+
+    /* Origins we accept messages from. Apps Script web apps redirect to a
+       sandboxed origin like https://n-xxxx-script.googleusercontent.com,
+       so we accept script.google.com and any *.googleusercontent.com host. */
+    function isAllowedOrigin(origin) {
+      var u;
+      try { u = new URL(origin); } catch (e) { return false; }
+      if (u.protocol !== 'https:') return false;
+      var h = u.hostname.toLowerCase();
+      return h === 'script.google.com' ||
+             h === 'googleusercontent.com' ||
+             h.slice(-('.googleusercontent.com'.length)) === '.googleusercontent.com';
+    }
+
+    var RESERVATION_ID_RE = /^PIE-\d{8}-[A-Z0-9]{8}$/;
+
+    /* =====================================================================
+       Pie illustrations (fallback when no photo is supplied)
+       ===================================================================== */
+    function pieSVG(kind) {
+      var out = '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">';
+      out += '<circle cx="100" cy="100" r="94" fill="#D9A45B" stroke="#B97A33" stroke-width="3"/>';
+      for (var i = 0; i < 28; i++) {
+        var a = (i / 28) * Math.PI * 2;
+        out += '<circle cx="' + (100 + 90 * Math.cos(a)).toFixed(1) + '" cy="' + (100 + 90 * Math.sin(a)).toFixed(1) + '" r="6" fill="#E4B672" stroke="#B97A33" stroke-width="1.5"/>';
+      }
+      var fill = { raspberry: '#C2415D', chocolate: '#4A2A1A', pumpkin: '#D98324', banana: '#F3E3A6', apple: '#C97B2A' }[kind];
+      out += '<circle cx="100" cy="100" r="76" fill="' + fill + '"/>';
+      var k, ang, x, y;
+      if (kind === 'raspberry') {
+        out += '<circle cx="100" cy="100" r="58" fill="#F7DDE3"/>';
+        for (k = 0; k < 9; k++) { ang = k / 9 * 6.283; x = 100 + 42 * Math.cos(ang); y = 100 + 42 * Math.sin(ang);
+          out += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="9" fill="#C2223F"/><circle cx="' + (x - 2).toFixed(1) + '" cy="' + (y - 2).toFixed(1) + '" r="3" fill="#E5566E"/>'; }
+        out += '<circle cx="100" cy="100" r="16" fill="#fff"/><circle cx="100" cy="100" r="8" fill="#C2223F"/>';
+      } else if (kind === 'chocolate') {
+        for (k = 0; k < 10; k++) { ang = k / 10 * 6.283; x = 100 + 54 * Math.cos(ang); y = 100 + 54 * Math.sin(ang);
+          out += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="11" fill="#FFF8EC" stroke="#EADBC0" stroke-width="1.5"/>'; }
+        out += '<circle cx="100" cy="100" r="30" fill="#FFF8EC" stroke="#EADBC0" stroke-width="1.5"/>';
+        for (k = 0; k < 8; k++) { out += '<rect x="' + (84 + (k * 7) % 30) + '" y="' + (86 + (k * 11) % 26) + '" width="8" height="3" rx="1.5" fill="#4A2A1A" transform="rotate(' + (k * 40) + ' 100 100)"/>'; }
+      } else if (kind === 'pumpkin') {
+        out += '<circle cx="100" cy="100" r="60" fill="#E39A3A" opacity=".55"/>';
+        for (k = 0; k < 40; k++) { ang = k * 2.4; var r = 8 + (k * 53) % 52; out += '<circle cx="' + (100 + r * Math.cos(ang)).toFixed(1) + '" cy="' + (100 + r * Math.sin(ang)).toFixed(1) + '" r="1.6" fill="#8A4A14"/>'; }
+        out += '<circle cx="100" cy="100" r="22" fill="#FFF8EC" stroke="#EADBC0" stroke-width="1.5"/><circle cx="100" cy="98" r="12" fill="#fff"/>';
+      } else if (kind === 'banana') {
+        for (k = 0; k < 8; k++) { ang = k / 8 * 6.283; x = 100 + 46 * Math.cos(ang); y = 100 + 46 * Math.sin(ang);
+          out += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="13" fill="#F9EDB4" stroke="#D9B84F" stroke-width="2"/><circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="4" fill="#E8CF7C"/>'; }
+        out += '<circle cx="100" cy="100" r="20" fill="#F9EDB4" stroke="#D9B84F" stroke-width="2"/>';
+        out += '<path d="M40 82 Q70 62 100 82 T160 82 M40 118 Q70 98 100 118 T160 118" fill="none" stroke="#4A2A1A" stroke-width="3" stroke-linecap="round" opacity=".85"/>';
+      } else if (kind === 'apple') {
+        out += '<circle cx="100" cy="100" r="62" fill="#B7651E" opacity=".5"/>';
+        var pts = [[100,62],[132,78],[142,108],[120,136],[84,138],[60,114],[64,80],[100,100],[84,112],[118,106]];
+        for (k = 0; k < pts.length; k++) { out += '<ellipse cx="' + pts[k][0] + '" cy="' + pts[k][1] + '" rx="17" ry="13" fill="#E7B35D" stroke="#B97A33" stroke-width="2" transform="rotate(' + (k * 33) + ' ' + pts[k][0] + ' ' + pts[k][1] + ')"/>'; }
+        out += '<circle cx="100" cy="100" r="64" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="2 7" opacity=".6"/>';
+      }
+      return out + '</svg>';
+    }
+
+    /* =====================================================================
+       Build pie cards + select options
+       ===================================================================== */
+    var grid = document.getElementById('pie-grid');
+    var select = document.getElementById('pieSelect');
+    document.getElementById('hero-art').innerHTML = pieSVG('pumpkin');
+
+    function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+
+    PIES.forEach(function (pie, idx) {
+      var wrapCls = 'reveal lg:col-span-2';
+      if (idx === 3) wrapCls += ' lg:col-start-2';
+      if (idx === 4) wrapCls += ' sm:col-span-2 sm:w-1/2 sm:justify-self-center lg:w-auto lg:justify-self-stretch';
+      var wrap = el('div', wrapCls);
+      var label = el('label', 'block h-full relative');
+      label.setAttribute('for', 'pie-' + idx);
+
+      var input = document.createElement('input');
+      input.type = 'radio'; input.name = 'pie'; input.id = 'pie-' + idx; input.value = pie.id;
+      input.className = 'pie-radio sr-only';
+
+      var card = el('div', 'pie-card flex flex-row sm:flex-col');
+      var media = el('div', 'pie-media');
+      if (pie.img) {
+        var img = document.createElement('img');
+        img.src = pie.img; img.alt = pie.id + ' pie'; img.loading = 'lazy';
+        img.onerror = function () { media.innerHTML = pieSVG(pie.kind); };
+        media.appendChild(img);
+      } else { media.innerHTML = pieSVG(pie.kind); }
+
+      var body = el('div', 'p-4 sm:p-6 flex flex-col flex-1 min-w-0');
+      var head = el('div', 'flex items-start justify-between gap-3');
+      head.appendChild(el('h3', 'text-xl font-semibold', pie.id));
+      var chk = el('span', 'pie-check shrink-0 w-7 h-7 rounded-full flex items-center justify-center');
+      chk.setAttribute('aria-hidden', 'true');
+      chk.innerHTML = '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      head.appendChild(chk);
+      body.appendChild(head);
+      body.appendChild(el('p', 'text-sm text-ink/70 leading-relaxed mt-2 flex-1', pie.desc));
+      body.appendChild(el('p', 'mt-3 sm:mt-4 text-xs font-semibold tracking-widest uppercase text-cta', 'Select this pie'));
+
+      card.appendChild(media); card.appendChild(body);
+      label.appendChild(input); label.appendChild(card);
+      wrap.appendChild(label); grid.appendChild(wrap);
+
+      var opt = document.createElement('option'); opt.value = pie.id; opt.textContent = pie.id;
+      select.appendChild(opt);
+
+      input.addEventListener('change', function () {
+        if (input.checked) { select.value = pie.id; clearError('pieSelect'); }
+      });
+    });
+
+    // Sync form select -> cards
+    select.addEventListener('change', function () {
+      var radios = grid.querySelectorAll('input[type=radio]');
+      for (var i = 0; i < radios.length; i++) radios[i].checked = (radios[i].value === select.value);
+      if (select.value) clearError('pieSelect');
+    });
+
+    /* =====================================================================
+       Scroll reveal
+       ===================================================================== */
+    var revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      revealEls.forEach(function (n) { io.observe(n); });
+    } else { revealEls.forEach(function (n) { n.classList.add('in'); }); }
+
+    /* =====================================================================
+       Validation
+       ===================================================================== */
+    var form = document.getElementById('reservation-form');
+    var fields = {
+      firstName: document.getElementById('firstName'),
+      lastName: document.getElementById('lastName'),
+      email: document.getElementById('email'),
+      phone: document.getElementById('phone'),
+      pieSelect: document.getElementById('pieSelect')
+    };
+
+    function normalizePhone(v) {
+      var d = String(v || '').replace(/\D/g, '');
+      if (d.length === 11 && d.charAt(0) === '1') d = d.slice(1);
+      return d;
+    }
+
+    var validators = {
+      firstName: function (v) { v = v.trim(); if (!v) return 'Please enter your first name.'; if (v.length > 60) return 'That name is too long.'; return ''; },
+      lastName: function (v) { v = v.trim(); if (!v) return 'Please enter your last name.'; if (v.length > 60) return 'That name is too long.'; return ''; },
+      email: function (v) {
+        v = v.trim();
+        if (!v) return 'Please enter your email address.';
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) || v.length > 120) return 'Please enter a valid email address.';
+        return '';
+      },
+      phone: function (v) {
+        if (!v.trim()) return 'Please enter your cell phone number.';
+        if (normalizePhone(v).length !== 10) return 'Please enter a valid 10-digit phone number.';
+        return '';
+      },
+      pieSelect: function (v) {
+        if (!v) return 'Please choose a pie flavor.';
+        if (!PIES.some(function (p) { return p.id === v; })) return 'Please choose one of the available pies.';
+        return '';
+      }
+    };
+
+    function setError(name, msg) {
+      var f = fields[name], err = document.getElementById(name + '-error');
+      err.textContent = msg;
+      if (msg) f.setAttribute('aria-invalid', 'true'); else f.removeAttribute('aria-invalid');
+    }
+    function clearError(name) { setError(name, ''); }
+    function validateField(name) { var m = validators[name](fields[name].value); setError(name, m); return !m; }
+    function validateAll() {
+      var ok = true, first = null;
+      Object.keys(fields).forEach(function (n) { if (!validateField(n)) { ok = false; if (!first) first = fields[n]; } });
+      if (first) first.focus();
+      return ok;
+    }
+
+    Object.keys(fields).forEach(function (n) {
+      var f = fields[n];
+      f.addEventListener('blur', function () { if (f.value || f.getAttribute('aria-invalid')) validateField(n); });
+      f.addEventListener('input', function () { if (f.getAttribute('aria-invalid') === 'true') validateField(n); });
+    });
+
+    // Light phone formatting as the user types
+    fields.phone.addEventListener('input', function () {
+      var d = normalizePhone(fields.phone.value).slice(0, 10), s = d;
+      if (d.length > 6) s = '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6);
+      else if (d.length > 3) s = '(' + d.slice(0, 3) + ') ' + d.slice(3);
+      else if (d.length > 0) s = '(' + d;
+      if (fields.phone.value !== s && /\d/.test(fields.phone.value)) fields.phone.value = s;
+    });
+
+    /* =====================================================================
+       UI state
+       ===================================================================== */
+    var submitBtn = document.getElementById('submit-btn');
+    var submitLabel = document.getElementById('submit-label');
+    var submitSpinner = document.getElementById('submit-spinner');
+    var submitHint = document.getElementById('submit-hint');
+    var banner = document.getElementById('form-banner');
+    var notice = document.getElementById('campaign-notice');
+
+    function urlConfigured() {
+      return /^https:\/\/script\.google\.com\/macros\/s\/[^\s]+\/exec$/.test(CONFIG.APPS_SCRIPT_URL);
+    }
+    function campaignOpen() { return CONFIG.CAMPAIGN_READY === true && urlConfigured(); }
+
+    function showBanner(kind, msg) {
+      banner.className = 'mt-8 rounded-xl px-4 py-3 text-sm ' + (kind === 'error'
+        ? 'bg-[#FFF1EF] border border-[#B3261E]/40 text-[#7A1A14]'
+        : 'bg-gold/10 border border-gold/50 text-ink');
+      banner.textContent = msg;
+    }
+    function hideBanner() { banner.className = 'hidden'; banner.textContent = ''; }
+
+    var state = { pending: null, timer: null, locked: false, requestId: null };
+
+    function setLoading(on) {
+      submitSpinner.classList.toggle('hidden', !on);
+      submitLabel.textContent = on ? 'Reserving your pie…' : 'Reserve My Free Pie';
+      submitBtn.disabled = on;
+      submitBtn.setAttribute('aria-busy', on ? 'true' : 'false');
+    }
+
+    function applyCampaignState() {
+      if (!campaignOpen()) {
+        notice.classList.remove('hidden');
+        submitBtn.disabled = true;
+        submitLabel.textContent = 'Reservations Opening Soon';
+        submitHint.textContent = 'Reservations aren\'t open yet. Feel free to look around and choose your favorite!';
+      } else {
+        notice.classList.add('hidden');
+        submitBtn.disabled = false;
+        submitLabel.textContent = 'Reserve My Free Pie';
+        submitHint.textContent = '';
+      }
+    }
+    applyCampaignState();
+
+    function newRequestId() {
+      if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+      var a = new Uint8Array(16); (window.crypto || window.msCrypto).getRandomValues(a);
+      return Array.prototype.map.call(a, function (b) { return ('0' + b.toString(16)).slice(-2); }).join('');
+    }
+
+    /* =====================================================================
+       Submission via hidden iframe + dynamic form (no fetch/no-cors)
+       ===================================================================== */
+    var frame = document.getElementById('gas-frame');
+
+    function finishPending() {
+      clearTimeout(state.timer); state.timer = null; state.pending = null;
+    }
+
+    function failSubmission(msg) {
+      finishPending();
+      setLoading(false);
+      if (!campaignOpen()) applyCampaignState();
+      showBanner('error', msg);
+    }
+
+    function postToAppsScript(payload) {
+      var f = document.createElement('form');
+      f.method = 'POST';
+      f.action = CONFIG.APPS_SCRIPT_URL;
+      f.target = 'gas-frame';
+      f.acceptCharset = 'UTF-8';
+      f.enctype = 'application/x-www-form-urlencoded';
+      f.style.display = 'none';
+      var input = document.createElement('input');
+      input.type = 'hidden'; input.name = 'payload'; input.value = JSON.stringify(payload);
+      f.appendChild(input);
+      document.body.appendChild(f);
+      f.submit();
+      document.body.removeChild(f);
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      hideBanner();
+
+      if (!campaignOpen()) {
+        showBanner('info', 'Reservations Opening Soon. We aren\'t accepting reservations just yet, so please check back soon!');
+        return;
+      }
+      if (state.locked) { showBanner('info', 'Your reservation has already been received. Please refresh the page if you need to reserve another pie.'); return; }
+      if (state.pending) return; // duplicate-submission guard
+      if (!validateAll()) return;
+
+      // Keep the same requestId for retries of the same reservation so the backend can de-duplicate.
+      if (!state.requestId) state.requestId = newRequestId();
+
+      var payload = {
+        requestId: state.requestId,
+        firstName: fields.firstName.value.trim(),
+        lastName: fields.lastName.value.trim(),
+        email: fields.email.value.trim(),
+        phone: normalizePhone(fields.phone.value),
+        pieSelection: fields.pieSelect.value,
+        smsConsent: document.getElementById('smsConsent').checked === true
+      };
+
+      state.pending = { firstName: payload.firstName, pie: payload.pieSelection, requestId: payload.requestId };
+      setLoading(true);
+      state.timer = setTimeout(function () {
+        failSubmission('We didn\'t get a response from our reservation system. Your reservation may not have gone through. Please try again in a moment.');
+      }, CONFIG.RESPONSE_TIMEOUT_MS);
+
+      try { postToAppsScript(payload); }
+      catch (err) { failSubmission('Something went wrong sending your reservation. Please check your connection and try again.'); }
+    });
+
+    /* =====================================================================
+       Secure postMessage handling
+       ===================================================================== */
+    // Apps Script serves user code inside a nested sandboxed frame, so the
+    // message source may be a descendant of our iframe rather than the iframe
+    // window itself. Walk up the (cross-origin-safe) parent chain to verify.
+    function isFromOurFrame(src) {
+      if (!src || !frame.contentWindow) return false;
+      var w = src, guard = 0;
+      while (w && guard++ < 6) {
+        if (w === frame.contentWindow) return true;
+        if (w === w.parent) break;
+        w = w.parent;
+      }
+      return false;
+    }
+
+    window.addEventListener('message', function (event) {
+      if (!state.pending) return;                       // nothing in flight
+      if (!isAllowedOrigin(event.origin)) return;       // wrong origin
+      if (!isFromOurFrame(event.source)) return;        // not from our hidden iframe
+
+      var data = event.data;
+      if (typeof data === 'string') { try { data = JSON.parse(data); } catch (e) { return; } }
+      if (!data || typeof data !== 'object' || data.type !== 'PIE_RESERVATION_RESULT') return;
+      var result = data.result;
+      if (!result || typeof result !== 'object') return;
+
+      var snapshot = state.pending;
+
+      if (result.success === true && typeof result.reservationId === 'string' && RESERVATION_ID_RE.test(result.reservationId)) {
+        finishPending();
+        state.locked = true;
+        setLoading(false);
+        submitBtn.disabled = true;
+        submitLabel.textContent = 'Reservation Received';
+        showSuccess(snapshot.firstName, snapshot.pie, result.reservationId);
+        form.reset();
+        Object.keys(fields).forEach(clearError);
+        return;
+      }
+
+      // Backend responded but not with a valid success
+      var code = String(result.error || result.code || '').toLowerCase();
+      if (code.indexOf('campaign') !== -1 || code.indexOf('not_ready') !== -1 || code.indexOf('not ready') !== -1) {
+        failSubmission('Reservations Opening Soon. We aren\'t accepting reservations just yet, so please check back soon!');
+      } else if (code.indexOf('duplicate') !== -1) {
+        failSubmission('It looks like we already have a reservation for you. Please check your email, or contact Barb Has the Buyer Team.');
+      } else {
+        failSubmission('We couldn\'t complete your reservation. Please double-check your details and try again.');
+      }
+    });
+
+    /* =====================================================================
+       Success modal
+       ===================================================================== */
+    var modal = document.getElementById('success-modal');
+    var lastFocus = null;
+
+    function showSuccess(first, pie, id) {
+      document.getElementById('m-first').textContent = first;
+      document.getElementById('m-pie').textContent = pie;
+      document.getElementById('m-id').textContent = id;
+      lastFocus = document.activeElement;
+      modal.classList.remove('hidden'); modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('modal-close').focus();
+    }
+    function closeModal() {
+      modal.classList.add('hidden'); modal.classList.remove('flex');
+      document.body.style.overflow = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) { if (e.target && e.target.getAttribute('data-close')) closeModal(); });
+    document.addEventListener('keydown', function (e) {
+      if (modal.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'Tab') { e.preventDefault(); document.getElementById('modal-close').focus(); } // single focusable control
+    });
+
+    /* Sticky mobile CTA: show after the hero, hide once the form is on screen */
+    var sticky = document.getElementById('sticky-cta');
+    var reserveSection = document.getElementById('reserve');
+    var heroSection = document.getElementById('hero-title').closest('section');
+    function updateSticky() {
+      var pastHero = heroSection.getBoundingClientRect().bottom < 0;
+      var r = reserveSection.getBoundingClientRect();
+      var formVisible = r.top < window.innerHeight * 0.85 && r.bottom > 0;
+      sticky.classList.toggle('show', pastHero && !formVisible);
+    }
+    window.addEventListener('scroll', updateSticky, { passive: true });
+    window.addEventListener('resize', updateSticky);
+    updateSticky();
+  })();
+  </script>
+</body>
+</html>
