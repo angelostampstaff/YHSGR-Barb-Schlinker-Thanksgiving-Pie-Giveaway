@@ -688,29 +688,39 @@
     }
 
     window.addEventListener('message', function (event) {
-      if (!state.pending) return;                       // nothing in flight
-      if (!isAllowedOrigin(event.origin)) return;       // wrong origin
-      if (!isFromOurFrame(event.source)) return;        // not from our hidden iframe
+    if (!state.pending) return;                       // nothing in flight
+    if (!isAllowedOrigin(event.origin)) return;       // wrong origin
 
-      var data = event.data;
-      if (typeof data === 'string') { try { data = JSON.parse(data); } catch (e) { return; } }
-      if (!data || typeof data !== 'object' || data.type !== 'PIE_RESERVATION_RESULT') return;
-      var result = data.result;
-      if (!result || typeof result !== 'object') return;
+    var data = event.data;
+    if (typeof data === 'string') { try { data = JSON.parse(data); } catch (e) { return; } }
+    if (!data || typeof data !== 'object' || data.type !== 'PIE_RESERVATION_RESULT') return;
+    var result = data.result;
+    if (!result || typeof result !== 'object') return;
 
-      var snapshot = state.pending;
+    var snapshot = state.pending;
 
-      if (result.success === true && typeof result.reservationId === 'string' && RESERVATION_ID_RE.test(result.reservationId)) {
-        finishPending();
-        state.locked = true;
-        setLoading(false);
-        submitBtn.disabled = true;
-        submitLabel.textContent = 'Reservation Received';
-        showSuccess(snapshot.firstName, snapshot.pie, result.reservationId);
-        form.reset();
-        Object.keys(fields).forEach(clearError);
-        return;
-      }
+    if (result.success === true) {
+      finishPending();
+      state.locked = true;
+      setLoading(false);
+      submitBtn.disabled = true;
+      submitLabel.textContent = 'Reservation Received';
+      showSuccess(snapshot.firstName, snapshot.pie, result.reservationId || 'PIE-RESERVED');
+      form.reset();
+      Object.keys(fields).forEach(clearError);
+      return;
+    }
+
+    // Handle error case
+    var code = String(result.error || result.code || '').toLowerCase();
+    if (code.indexOf('campaign') !== -1 || code.indexOf('not_ready') !== -1) {
+      failSubmission('Reservations Opening Soon. We aren\'t accepting reservations just yet, so please check back soon!');
+    } else if (code.indexOf('duplicate') !== -1) {
+      failSubmission('It looks like we already have a reservation for you. Please check your email, or contact Barb Has the Buyer Team.');
+    } else {
+      failSubmission(result.message || 'We couldn\'t complete your reservation. Please double-check your details and try again.');
+    }
+  });
 
       // Backend responded but not with a valid success
       var code = String(result.error || result.code || '').toLowerCase();
