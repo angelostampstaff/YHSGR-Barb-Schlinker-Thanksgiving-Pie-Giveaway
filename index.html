@@ -140,7 +140,10 @@
         <p class="font-display font-semibold text-base sm:text-lg">Barb Has the Buyer Team</p>
         <p class="text-[11px] sm:text-xs tracking-widest uppercase text-ink/60">Your Home Sold Guaranteed Realty</p>
       </div>
-      <a href="#reserve" class="link-focus hidden sm:inline-block text-sm font-semibold text-cta hover:underline">Reserve My Free Pie</a>
+      <div class="flex items-center gap-5 shrink-0">
+        <a href="tel:+17197357052" class="link-focus text-sm font-semibold text-ink hover:text-cta whitespace-nowrap" aria-label="Call (719) 735-7052"><span class="sm:hidden">Call us</span><span class="hidden sm:inline">Call (719) 735-7052</span></a>
+        <a href="#reserve" class="link-focus hidden sm:inline-block text-sm font-semibold text-cta hover:underline">Reserve My Free Pie</a>
+      </div>
     </div>
   </header>
 
@@ -157,6 +160,7 @@
             <a href="#reserve" id="hero-cta" class="btn-cta link-focus inline-flex items-center justify-center rounded-full px-8 py-4 text-base w-full sm:w-auto">Reserve My Free Pie</a>
             <span class="text-sm text-ink/60 text-center sm:text-left">Five bakery favorites. One free pie for you.</span>
           </div>
+          <p class="mt-5 text-sm text-ink/80 text-center sm:text-left">Reserve by <strong>November 16</strong>. Prefer to reserve by phone? Call <a href="tel:+17197357052" class="font-semibold text-cta underline link-focus">(719) 735-7052</a>.</p>
         </div>
         <div class="reveal flex justify-center" aria-hidden="true">
           <div class="relative w-48 sm:w-72 md:w-96">
@@ -173,8 +177,8 @@
         <div class="rounded-2xl border border-gold/50 bg-gold/10 px-5 py-4 flex items-start gap-3">
           <svg class="w-6 h-6 text-gold shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg>
           <div>
-            <p class="font-display font-semibold text-lg">Reservations Opening Soon</p>
-            <p class="text-sm text-ink/80">We're putting the finishing touches on our pie giveaway. Take a look around and pick your favorite. Reservations aren't open just yet, so please check back soon!</p>
+            <p id="notice-title" class="font-display font-semibold text-lg">Reservations Opening Soon</p>
+            <p id="notice-text" class="text-sm text-ink/80">We're putting the finishing touches on our pie giveaway. Take a look around and pick your favorite. Reservations aren't open just yet, so please check back soon!</p>
           </div>
         </div>
       </div>
@@ -203,6 +207,7 @@
           <h2 id="reserve-title" class="text-3xl sm:text-4xl font-bold">Reserve My Free Pie</h2>
           <div class="gold-rule mx-auto my-5"></div>
           <p class="text-ink/75">Just a few details and your pie is yours.</p>
+          <p class="mt-4 text-sm text-ink/80">Reservations close <strong>November 16</strong>. Prefer to reserve by phone? Call <a href="tel:+17197357052" class="font-semibold text-cta underline link-focus">(719) 735-7052</a>.</p>
         </div>
 
         <div id="form-banner" class="hidden mt-8 rounded-xl px-4 py-3 text-sm" role="alert"></div>
@@ -294,6 +299,7 @@
     <div class="max-w-6xl mx-auto px-5 py-10 text-center">
       <p class="font-display text-xl">Barb Has the Buyer Team</p>
       <p class="text-sm text-cream/70 mt-1">Your Home Sold Guaranteed Realty</p>
+      <p class="text-sm text-cream/90 mt-5">Questions? Call <a href="tel:+17198882882" class="font-semibold underline link-focus">(719) 888-2882</a> or <a href="tel:+17197357052" class="font-semibold underline link-focus">(719) 735-7052</a></p>
       <p class="text-xs text-cream/50 mt-6">With gratitude, from our community to yours. Happy Thanksgiving!</p>
     </div>
   </footer>
@@ -321,6 +327,7 @@
         <div class="flex justify-between gap-4 px-4 py-3"><dt class="text-ink/60">Reservation ID</dt><dd id="m-id" class="font-semibold text-right break-all"></dd></div>
       </dl>
       <p id="modal-desc" class="mt-6 text-ink/80 leading-relaxed">Thank you for being part of our community! We're so grateful for you. Watch your email and phone for your confirmation and upcoming pickup details.</p>
+      <p class="mt-4 text-sm text-ink/70">Questions? Call <a href="tel:+17198882882" class="font-semibold text-cta underline link-focus">(719) 888-2882</a> or <a href="tel:+17197357052" class="font-semibold text-cta underline link-focus">(719) 735-7052</a>.</p>
       <p class="mt-5 font-display text-lg text-cta">Barb Has the Buyer Team</p>
       <button id="modal-close" type="button" class="btn-cta mt-7 rounded-full px-8 py-3 text-sm">Close</button>
     </div>
@@ -340,6 +347,10 @@
       // 2) Keep false while in setup mode. Set to true ONLY after the
       //    backend CAMPAIGN_READY is also set to true.
       CAMPAIGN_READY: true,
+
+      // Reservations are accepted through the end of November 16, 2026
+      // (Mountain Time, UTC-07:00). After that the form closes.
+      RESERVATION_DEADLINE: '2026-11-16T23:59:59-07:00',
 
       // How long to wait for the backend before showing an error (ms)
       RESPONSE_TIMEOUT_MS: 45000
@@ -563,7 +574,11 @@
     function urlConfigured() {
       return /^https:\/\/script\.google\.com\/macros\/s\/[^\s]+\/exec$/.test(CONFIG.APPS_SCRIPT_URL);
     }
-    function campaignOpen() { return CONFIG.CAMPAIGN_READY === true && urlConfigured(); }
+    function deadlinePassed() {
+      var d = new Date(CONFIG.RESERVATION_DEADLINE);
+      return !isNaN(d.getTime()) && Date.now() > d.getTime();
+    }
+    function campaignOpen() { return CONFIG.CAMPAIGN_READY === true && urlConfigured() && !deadlinePassed(); }
 
     function showBanner(kind, msg) {
       banner.className = 'mt-8 rounded-xl px-4 py-3 text-sm ' + (kind === 'error'
@@ -584,15 +599,23 @@
 
     function applyCampaignState() {
       if (!campaignOpen()) {
+        var closed = deadlinePassed();
         notice.classList.remove('hidden');
         submitBtn.disabled = true;
-        submitLabel.textContent = 'Reservations Opening Soon';
-        submitHint.textContent = 'Reservations aren\'t open yet. Feel free to look around and choose your favorite!';
+        if (closed) {
+          document.getElementById('notice-title').textContent = 'Reservations Are Closed';
+          document.getElementById('notice-text').innerHTML = 'Our Thanksgiving pie reservations closed on November 16. Thank you for being part of our community! Questions? Call <a href="tel:+17198882882" class="font-semibold text-cta underline">(719) 888-2882</a> or <a href="tel:+17197357052" class="font-semibold text-cta underline">(719) 735-7052</a>.';
+          submitLabel.textContent = 'Reservations Closed';
+          submitHint.textContent = 'Reservations closed on November 16.';
+        } else {
+          submitLabel.textContent = 'Reservations Opening Soon';
+          submitHint.textContent = 'Reservations aren\'t open yet. Feel free to look around and choose your favorite!';
+        }
       } else {
         notice.classList.add('hidden');
         submitBtn.disabled = false;
         submitLabel.textContent = 'Reserve My Free Pie';
-        submitHint.textContent = '';
+        submitHint.textContent = 'Reservations close November 16.';
       }
     }
     applyCampaignState();
@@ -640,7 +663,10 @@
       hideBanner();
 
       if (!campaignOpen()) {
-        showBanner('info', 'Reservations Opening Soon. We aren\'t accepting reservations just yet, so please check back soon!');
+        applyCampaignState();
+        showBanner('info', deadlinePassed()
+          ? 'Reservations have closed. Thank you for being part of our community! Questions? Call (719) 888-2882 or (719) 735-7052.'
+          : 'Reservations Opening Soon. We aren\'t accepting reservations just yet, so please check back soon!');
         return;
       }
       if (state.locked) { showBanner('info', 'Your reservation has already been received. Please refresh the page if you need to reserve another pie.'); return; }
@@ -689,14 +715,20 @@
 
     window.addEventListener('message', function (event) {
       if (!state.pending) return;                       // nothing in flight
-      if (!isAllowedOrigin(event.origin)) return;       // wrong origin
-      if (!isFromOurFrame(event.source)) return;        // not from our hidden iframe
+      // Diagnostics: only messages that look like ours are logged (open DevTools > Console)
+      var looksOurs = false;
+      try { var probe = typeof event.data === 'string' ? JSON.parse(event.data) : event.data; looksOurs = !!(probe && probe.type === 'PIE_RESERVATION_RESULT'); } catch (e) {}
+      if (!isAllowedOrigin(event.origin)) { if (looksOurs) console.warn('[Pie] Ignored message: origin not allowed ->', event.origin); return; }
+      if (!isFromOurFrame(event.source)) { if (looksOurs) console.warn('[Pie] Ignored message: not from the hidden iframe. Origin was', event.origin); return; }
 
       var data = event.data;
       if (typeof data === 'string') { try { data = JSON.parse(data); } catch (e) { return; } }
       if (!data || typeof data !== 'object' || data.type !== 'PIE_RESERVATION_RESULT') return;
       var result = data.result;
       if (!result || typeof result !== 'object') return;
+      if (!(result.success === true && typeof result.reservationId === 'string' && RESERVATION_ID_RE.test(result.reservationId))) {
+        console.warn('[Pie] Backend replied without a valid success:', result);
+      }
 
       var snapshot = state.pending;
 
@@ -716,6 +748,8 @@
       var code = String(result.error || result.code || '').toLowerCase();
       if (code.indexOf('campaign') !== -1 || code.indexOf('not_ready') !== -1 || code.indexOf('not ready') !== -1) {
         failSubmission('Reservations Opening Soon. We aren\'t accepting reservations just yet, so please check back soon!');
+      } else if (code.indexOf('closed') !== -1) {
+        failSubmission('Reservations have closed. Thank you for being part of our community! Questions? Call (719) 888-2882 or (719) 735-7052.');
       } else if (code.indexOf('duplicate') !== -1) {
         failSubmission('It looks like we already have a reservation for you. Please check your email, or contact Barb Has the Buyer Team.');
       } else {
