@@ -726,6 +726,7 @@ window.addEventListener('message', function (event) {
   });
 
   /* Modal accessibility controls */
+  var modal = document.getElementById('success-modal');
   var lastFocus = null;
   function openModal() {
     lastFocus = document.activeElement;
@@ -760,6 +761,3 @@ window.addEventListener('message', function (event) {
   window.addEventListener('resize', updateSticky);
   updateSticky();
 })();
-</script>
-</body>
-</html>
