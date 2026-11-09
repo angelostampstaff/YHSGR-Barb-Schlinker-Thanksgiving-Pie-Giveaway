@@ -658,7 +658,7 @@
         phone: normalizePhone(fields.phone.value),
         pieSelection: fields.pieSelect.value,
         smsConsent: document.getElementById('smsConsent').checked === true
-      };
+      var modal = document.getElementById('success-modal');
 
       state.pending = { firstName: payload.firstName, pie: payload.pieSelection, requestId: payload.requestId };
       setLoading(true);
