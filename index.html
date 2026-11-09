@@ -358,14 +358,14 @@
     /* Origins we accept messages from. Apps Script web apps redirect to a
        sandboxed origin like https://n-xxxx-script.googleusercontent.com,
        so we accept script.google.com and any *.googleusercontent.com host. */
-    function isAllowedOrigin(origin) {
+   function isAllowedOrigin(origin) {
       var u;
       try { u = new URL(origin); } catch (e) { return false; }
       if (u.protocol !== 'https:') return false;
       var h = u.hostname.toLowerCase();
       return h === 'script.google.com' ||
-             h === 'googleusercontent.com' ||
-             h.slice(-('.googleusercontent.com'.length)) === '.googleusercontent.com';
+             h.endsWith('script.googleusercontent.com') ||
+             h.endsWith('googleusercontent.com');
     }
 
     var RESERVATION_ID_RE = /^PIE-\d{8}-[A-Z0-9]{8}$/;
