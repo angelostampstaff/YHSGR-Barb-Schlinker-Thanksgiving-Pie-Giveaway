@@ -687,13 +687,16 @@
       return false;
     }
 
-    window.addEventListener('message', function (event) {
+window.addEventListener('message', function (event) {
     if (!state.pending) return;                       // nothing in flight
     if (!isAllowedOrigin(event.origin)) return;       // wrong origin
 
     var data = event.data;
-    if (typeof data === 'string') { try { data = JSON.parse(data); } catch (e) { return; } }
+    if (typeof data === 'string') { 
+      try { data = JSON.parse(data); } catch (e) { return; } 
+    }
     if (!data || typeof data !== 'object' || data.type !== 'PIE_RESERVATION_RESULT') return;
+    
     var result = data.result;
     if (!result || typeof result !== 'object') return;
 
@@ -722,59 +725,41 @@
     }
   });
 
-      // Backend responded but not with a valid success
-      var code = String(result.error || result.code || '').toLowerCase();
-      if (code.indexOf('campaign') !== -1 || code.indexOf('not_ready') !== -1 || code.indexOf('not ready') !== -1) {
-        failSubmission('Reservations Opening Soon. We aren\'t accepting reservations just yet, so please check back soon!');
-      } else if (code.indexOf('duplicate') !== -1) {
-        failSubmission('It looks like we already have a reservation for you. Please check your email, or contact Barb Has the Buyer Team.');
-      } else {
-        failSubmission('We couldn\'t complete your reservation. Please double-check your details and try again.');
-      }
-    });
+  /* Modal accessibility controls */
+  var lastFocus = null;
+  function openModal() {
+    lastFocus = document.activeElement;
+    modal.classList.remove('hidden'); modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('modal-close').focus();
+  }
+  function closeModal() {
+    modal.classList.add('hidden'); modal.classList.remove('flex');
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  modal.addEventListener('click', function (e) { if (e.target && e.target.getAttribute('data-close')) closeModal(); });
+  document.addEventListener('keydown', function (e) {
+    if (modal.classList.contains('hidden')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Tab') { e.preventDefault(); document.getElementById('modal-close').focus(); }
+  });
 
-    /* =====================================================================
-       Success modal
-       ===================================================================== */
-    var modal = document.getElementById('success-modal');
-    var lastFocus = null;
-
-    function showSuccess(first, pie, id) {
-      document.getElementById('m-first').textContent = first;
-      document.getElementById('m-pie').textContent = pie;
-      document.getElementById('m-id').textContent = id;
-      lastFocus = document.activeElement;
-      modal.classList.remove('hidden'); modal.classList.add('flex');
-      document.body.style.overflow = 'hidden';
-      document.getElementById('modal-close').focus();
-    }
-    function closeModal() {
-      modal.classList.add('hidden'); modal.classList.remove('flex');
-      document.body.style.overflow = '';
-      if (lastFocus && lastFocus.focus) lastFocus.focus();
-    }
-    document.getElementById('modal-close').addEventListener('click', closeModal);
-    modal.addEventListener('click', function (e) { if (e.target && e.target.getAttribute('data-close')) closeModal(); });
-    document.addEventListener('keydown', function (e) {
-      if (modal.classList.contains('hidden')) return;
-      if (e.key === 'Escape') closeModal();
-      if (e.key === 'Tab') { e.preventDefault(); document.getElementById('modal-close').focus(); } // single focusable control
-    });
-
-    /* Sticky mobile CTA: show after the hero, hide once the form is on screen */
-    var sticky = document.getElementById('sticky-cta');
-    var reserveSection = document.getElementById('reserve');
-    var heroSection = document.getElementById('hero-title').closest('section');
-    function updateSticky() {
-      var pastHero = heroSection.getBoundingClientRect().bottom < 0;
-      var r = reserveSection.getBoundingClientRect();
-      var formVisible = r.top < window.innerHeight * 0.85 && r.bottom > 0;
-      sticky.classList.toggle('show', pastHero && !formVisible);
-    }
-    window.addEventListener('scroll', updateSticky, { passive: true });
-    window.addEventListener('resize', updateSticky);
-    updateSticky();
-  })();
-  </script>
+  /* Sticky mobile CTA: show after the hero, hide once the form is on screen */
+  var sticky = document.getElementById('sticky-cta');
+  var reserveSection = document.getElementById('reserve');
+  var heroSection = document.getElementById('hero-title').closest('section');
+  function updateSticky() {
+    var pastHero = heroSection.getBoundingClientRect().bottom < 0;
+    var r = reserveSection.getBoundingClientRect();
+    var formVisible = r.top < window.innerHeight * 0.85 && r.bottom > 0;
+    sticky.classList.toggle('show', pastHero && !formVisible);
+  }
+  window.addEventListener('scroll', updateSticky, { passive: true });
+  window.addEventListener('resize', updateSticky);
+  updateSticky();
+})();
+</script>
 </body>
 </html>
