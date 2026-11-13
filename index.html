@@ -159,7 +159,7 @@
             <a href="#reserve" id="hero-cta" class="btn-cta link-focus inline-flex items-center justify-center rounded-full px-8 py-4 text-base w-full sm:w-auto">Reserve My Free Pie</a>
             <span class="text-sm text-ink/60 text-center sm:text-left">Five bakery favorites. One free pie per household.</span>
           </div>
-          <p class="mt-5 text-sm text-ink/80 text-center sm:text-left">Reserve by <strong>November 16</strong>, then <a href="#pickup" class="underline link-focus">pick up Nov 23 to 25</a>. Prefer to reserve by phone? Call <a href="tel:+17197357052" class="font-semibold text-cta underline link-focus">(719) 735-7052</a>.</p>
+          <p class="mt-5 text-sm text-ink/80 text-center sm:text-left">Reserve by <strong>November 17</strong>, then <a href="#pickup" class="underline link-focus">pick up Nov 23 to 25</a>. Prefer to reserve by phone? Call <a href="tel:+17197357052" class="font-semibold text-cta underline link-focus">(719) 735-7052</a>.</p>
         </div>
         <div class="reveal flex justify-center" aria-hidden="true">
           <div class="relative w-48 sm:w-72 md:w-96">
@@ -206,7 +206,7 @@
           <h2 id="reserve-title" class="text-3xl sm:text-4xl font-bold">Reserve My Free Pie</h2>
           <div class="gold-rule mx-auto my-5"></div>
           <p class="text-ink/75">Just a few details and your pie is yours.</p>
-          <p class="mt-4 text-sm text-ink/80"><strong>One pie per household.</strong> Reservations close <strong>November 16</strong>. Prefer to reserve by phone? Call <a href="tel:+17197357052" class="font-semibold text-cta underline link-focus">(719) 735-7052</a>.</p>
+          <p class="mt-4 text-sm text-ink/80"><strong>One pie per household.</strong> Reservations close <strong>November 17</strong>. Prefer to reserve by phone? Call <a href="tel:+17197357052" class="font-semibold text-cta underline link-focus">(719) 735-7052</a>.</p>
         </div>
 
         <div id="form-banner" class="hidden mt-8 rounded-xl px-4 py-3 text-sm" role="alert"></div>
@@ -384,9 +384,9 @@
       //    backend CAMPAIGN_READY is also set to true.
       CAMPAIGN_READY: true,
 
-      // Reservations are accepted through the end of November 16, 2026
+      // Reservations are accepted through the end of November 17, 2026
       // (Mountain Time, UTC-07:00). After that the form closes.
-      RESERVATION_DEADLINE: '2026-11-16T23:59:59-07:00',
+      RESERVATION_DEADLINE: '2026-11-17T23:59:59-07:00',
 
       // How long to wait for the backend before showing an error (ms)
       RESPONSE_TIMEOUT_MS: 45000
@@ -640,9 +640,9 @@
         submitBtn.disabled = true;
         if (closed) {
           document.getElementById('notice-title').textContent = 'Reservations Are Closed';
-          document.getElementById('notice-text').innerHTML = 'Our Thanksgiving pie reservations closed on November 16. Thank you for being part of our community! Questions? Call <a href="tel:+17198882882" class="font-semibold text-cta underline">(719) 888-2882</a> or <a href="tel:+17197357052" class="font-semibold text-cta underline">(719) 735-7052</a>.';
+          document.getElementById('notice-text').innerHTML = 'Our Thanksgiving pie reservations closed on November 17. Thank you for being part of our community! Questions? Call <a href="tel:+17198882882" class="font-semibold text-cta underline">(719) 888-2882</a> or <a href="tel:+17197357052" class="font-semibold text-cta underline">(719) 735-7052</a>.';
           submitLabel.textContent = 'Reservations Closed';
-          submitHint.textContent = 'Reservations closed on November 16.';
+          submitHint.textContent = 'Reservations closed on November 17.';
         } else {
           submitLabel.textContent = 'Reservations Opening Soon';
           submitHint.textContent = 'Reservations aren\'t open yet. Feel free to look around and choose your favorite!';
@@ -651,7 +651,7 @@
         notice.classList.add('hidden');
         submitBtn.disabled = false;
         submitLabel.textContent = 'Reserve My Free Pie';
-        submitHint.textContent = 'One pie per household. Reservations close November 16.';
+        submitHint.textContent = 'One pie per household. Reservations close November 17.';
       }
     }
     applyCampaignState();
